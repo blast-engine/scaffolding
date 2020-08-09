@@ -11,9 +11,6 @@ const entities = {
   ], 
 }
 
-
-
 module.exports = async () => ({
-  entities,
-  e: entities
+  entities
 })
