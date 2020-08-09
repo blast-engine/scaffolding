@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "@blast-engine/find-recursively-up": "^0.0.0",
-    "chalk": "^3.0.0"
+    "chalk": "^3.0.0",
+    "yargs": "^15.4.1"
   }
 }
