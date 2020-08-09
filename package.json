@@ -1,0 +1,12 @@
+{
+  "name": "@blast-engine/scaffolding",
+  "version": "0.0.0",
+  "main": "lib/index.js",
+  "bin": {
+    "sc:new": "bin/create.exe.js"
+  },
+  "dependencies": {
+    "@blast-engine/find-recursively-up": "^0.0.0",
+    "chalk": "^3.0.0"
+  }
+}
