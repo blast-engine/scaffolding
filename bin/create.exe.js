@@ -2,16 +2,21 @@
 const yargs = require('yargs')
 const { red, blue } = require('chalk')
 
-const { createFiles } = require('../lib')
+const { createFiles, getConfig } = require('../lib')
 
-// usage: yarn sc [type] [path?] [path?] [path?] [name]
-// or: yarn sc [type] [path?/path?/path?/name]
+// usage: yarn sc-new [type] [path?] [path?] [path?] [name]
+// or: yarn sc-new [type] [path?/path?/path?/name]
 ;(async () => {
   
-  const [ fileType, ...filePathAndName ] = yargs.argv._ 
+  const [fileType, ...filePathAndName] = yargs.argv._ 
+  const config = await getConfig();
+  const providedTemplates = Object.keys(config).filter(i => i !== '_dir')
   
-  if (!fileType) return console.log(red('file type cannot be empty'))
-  if (!filePathAndName.length) return console.log(red('file name cannot be empty'))
+  if (!fileType) {
+    console.log(red('File type cannot be empty. Usage: yarn sc-new [type] path/to/file/fileName.'))
+    return console.log(red(`Available types: \n${providedTemplates.map(i => `- ${i}`).join('\n')}`))
+  }
+  if (!filePathAndName.length) return console.log(red('File name cannot be empty'))
   let filePathArray = []
   let fileName
 
@@ -40,5 +45,5 @@ const { createFiles } = require('../lib')
     await createFiles({ type: fileType, name: fileName, path: filePathArray })
   } catch (e) { return console.log(red(e)) }
 
-  return console.log(blue('files successfully created!'))
+  return console.log(blue('Files successfully created!'))
 })()

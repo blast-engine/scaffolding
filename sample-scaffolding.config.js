@@ -1,5 +1,6 @@
 const entities = {
   path: 'src',
+  indexer: 'index.ts',
   files: [{
       template: require('./template'),
       name: name => `${name}.js`,
@@ -14,3 +15,7 @@ const entities = {
 module.exports = async () => ({
   entities
 })
+
+const hooks = (name, options) => {
+  
+}
